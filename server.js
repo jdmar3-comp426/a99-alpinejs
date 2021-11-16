@@ -40,7 +40,7 @@ app.get("/app/users", (req, res) => {
 
 app.post("/app/new/", (req, res) => {
     var errors = []
-    if (!req.body.password) {
+    if (!req.body.pass) {
         errors.push("password not specified!");
     }
     if (!req.body.email) {
@@ -57,28 +57,28 @@ app.post("/app/new/", (req, res) => {
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 app.get("/app/user/:id", (req, res) => {
-	const stmt = db.prepare("SELECT * FROM userinfo WHERE id = ?").get(req.params.id);
+	const stmt = db.prepare("SELECT * FROM userinfo WHERE group_id = ?").get(req.params.id);
 	res.status(201).json(stmt);
 });
 
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.patch("/app/update/user/:id", (req, res) => {
-	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass), email = COALESCE(?, email), WHERE id = ?");
+	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass), email = COALESCE(?,email) WHERE group_id = ?");
 	const info = stmt.run(req.body.user, md5(req.body.pass), req.body.email, req.params.id);
 	res.status(200).json({"message" : info.changes+ " record updated: ID " +req.params.id + " (200)"});
 });
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.delete("/app/delete/user/:id", (req, res) => {
-	const stmt = db.prepare("DELETE FROM userinfo WHERE id = ?");
+	const stmt = db.prepare("DELETE FROM userinfo WHERE group_id = ?");
 	const info = stmt.run(req.params.id);
 	res.status(200).json({"message" : info.changes+ " record deleted: ID " +req.params.id + " (200)"});
 });
 
 // CREATE new interactions at endpoint /app/interactions/
 app.post("/app/interactions", (req, res) => {
-	const stmt = db.prepare("INSERT INTO interactions (login, inventory, coins) VALUES (?, ?, ?)");
-	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins);
+	const stmt = db.prepare("INSERT INTO interactions (login, inventory, coins, grp_id) VALUES (?, ?, ?, ?)");
+	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins, req.body.grp_id);
 	res.status(201).json({"message" : info.changes+ " record created: ID " +info.lastInsertRowid + " (201)"});
 });
 
@@ -90,8 +90,8 @@ app.get("/app/interaction/:id", (req, res) => {
 
 // UPDATE interaction at endpoint /app/update/interaction/:id
 app.patch("/app/update/interaction/:id", (req, res) => {
-	const stmt = db.prepare("UPDATE interactions SET login = COALESCE(?,login), inventory = COALESCE(?,inventory), coins = COALESCE(?, coins), WHERE id = ?");
-	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins, req.params.id);
+	const stmt = db.prepare("UPDATE interactions SET login = COALESCE(?,login), inventory = COALESCE(?,inventory), coins = COALESCE(?,coins), grp_id = COALESCE(?,grp_id) WHERE id = ?");
+	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins, req.body.grp_id, req.params.id);
 	res.status(200).json({"message" : info.changes+ " record updated: ID " +req.params.id + " (200)"});
 });
 

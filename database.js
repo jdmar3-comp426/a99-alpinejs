@@ -14,9 +14,11 @@ let row = stmt.get();
     console.log('Your database appears to be empty. I will initialize it now.');
 // Set a const that will contain your SQL commands to initialize the database.
     const sqlInit = `
-        CREATE TABLE IF NOT EXISTS userinfo ( group_id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT, pass TEXT, email TEXT UNIQUE, CONSTRAINT email_unique UNIQUE (email) );
+        DROP TABLE userinfo;
+        CREATE TABLE userinfo ( group_id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT, pass TEXT, email TEXT UNIQUE, CONSTRAINT email_unique UNIQUE (email) );
 		INSERT INTO userinfo (user, pass, email) VALUES ('admin','1234','123email@gmail.com'), ('test','5678','456email@gmail.com');
-        CREATE TABLE IF NOT EXISTS interactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, login INTEGER, inventory INTEGER, coins INTEGER, grp_id INTEGER NOT NULL, FOREIGN KEY (grp_id) REFERENCES userinfo(group_id) ON UPDATE CASCADE ON DELETE CASCADE );
+        DROP TABLE interactions;
+        CREATE TABLE interactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, login INTEGER, inventory INTEGER, coins INTEGER, grp_id INTEGER NOT NULL, FOREIGN KEY (grp_id) REFERENCES userinfo(group_id) ON UPDATE CASCADE ON DELETE CASCADE );
         INSERT INTO interactions (login, inventory, coins, grp_id) VALUES (0, 0, 0, 1);
         `;
     //`;
