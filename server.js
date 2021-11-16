@@ -27,17 +27,11 @@ app.get("/app/", (req, res, next) => {
 
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
-	const stmt = db.prepare("SELECT * FROM userinfo").all();
+	const stmt = db.prepare("SELECT * FROM usertable").all();
 	res.status(201).json(stmt);
 });
 
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-//app.post("/app/new/", (req, res) => {
-//	const stmt = db.prepare("INSERT INTO userinfo (user, pass, email) VALUES (?, ?, ?)");
-//	const info = stmt.run(req.body.user, md5(req.body.pass), req.body.email);
-//	res.status(201).json({"message" : info.changes+ " record created: ID " +info.lastInsertRowid + " (201)"});
-//});
-
 app.post("/app/new/", (req, res) => {
     var errors = []
     if (!req.body.pass) {
@@ -50,36 +44,42 @@ app.post("/app/new/", (req, res) => {
         res.status(400).json({"error" : errors.join(",")});
         return;
     }
-	const stmt = db.prepare("INSERT INTO userinfo (user, pass, email) VALUES (?, ?, ?)");
+	const stmt = db.prepare("INSERT INTO usertable (user, pass, email) VALUES (?, ?, ?)");
 	const info = stmt.run(req.body.user, md5(req.body.pass), req.body.email);
 	res.status(201).json({"message" : info.changes+ " record created: ID " +info.lastInsertRowid + " (201)"});
 });
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 app.get("/app/user/:id", (req, res) => {
-	const stmt = db.prepare("SELECT * FROM userinfo WHERE group_id = ?").get(req.params.id);
+	const stmt = db.prepare("SELECT * FROM usertable WHERE group_id = ?").get(req.params.id);
 	res.status(201).json(stmt);
 });
 
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.patch("/app/update/user/:id", (req, res) => {
-	const stmt = db.prepare("UPDATE userinfo SET user = COALESCE(?,user), pass = COALESCE(?,pass), email = COALESCE(?,email) WHERE group_id = ?");
+	const stmt = db.prepare("UPDATE usertable SET user = COALESCE(?,user), pass = COALESCE(?,pass), email = COALESCE(?,email) WHERE group_id = ?");
 	const info = stmt.run(req.body.user, md5(req.body.pass), req.body.email, req.params.id);
 	res.status(200).json({"message" : info.changes+ " record updated: ID " +req.params.id + " (200)"});
 });
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.delete("/app/delete/user/:id", (req, res) => {
-	const stmt = db.prepare("DELETE FROM userinfo WHERE group_id = ?");
+	const stmt = db.prepare("DELETE FROM usertable WHERE group_id = ?");
 	const info = stmt.run(req.params.id);
 	res.status(200).json({"message" : info.changes+ " record deleted: ID " +req.params.id + " (200)"});
 });
 
-// CREATE new interactions at endpoint /app/interactions/
-app.post("/app/interactions", (req, res) => {
+// CREATE new interaction at endpoint /app/interaction/
+app.post("/app/interaction", (req, res) => {
 	const stmt = db.prepare("INSERT INTO interactions (login, inventory, coins, grp_id) VALUES (?, ?, ?, ?)");
 	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins, req.body.grp_id);
 	res.status(201).json({"message" : info.changes+ " record created: ID " +info.lastInsertRowid + " (201)"});
+});
+
+// READ a list of all interactions (HTTP method GET) at endpoint /app/interactions/
+app.get("/app/interactions", (req, res) => {	
+	const stmt = db.prepare("SELECT * FROM interactions").all();
+	res.status(201).json(stmt);
 });
 
 // READ a single interaction (HTTP method GET) at endpoint /app/interaction/:id
