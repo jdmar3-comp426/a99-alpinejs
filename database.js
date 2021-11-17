@@ -14,10 +14,9 @@ if (row === undefined) {
     console.log('Your database appears to be empty. I will initialize it now.');
 // Set a const that will contain your SQL commands to initialize the database.
     const sqlInit = `
-        CREATE TABLE IF NOT EXISTS usertable ( group_id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT, pass TEXT, email TEXT UNIQUE, CONSTRAINT email_unique UNIQUE (email) );
+        CREATE TABLE usertable ( group_id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT, pass TEXT, email TEXT UNIQUE, CONSTRAINT email_unique UNIQUE (email) );
 		INSERT INTO usertable (user, pass, email) VALUES ('admin','1234','123email@gmail.com'), ('test','5678','456email@gmail.com');
-        DROP TABLE interactions;
-        CREATE TABLE interactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, login INTEGER, inventory INTEGER, coins INTEGER, grp_id INTEGER NOT NULL, FOREIGN KEY (grp_id) REFERENCES usertable (group_id) ON UPDATE CASCADE ON DELETE CASCADE );
+        CREATE TABLE interactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, login INTEGER, inventory INTEGER, coins INTEGER, grp_id INTEGER NOT NULL, FOREIGN KEY (grp_id) REFERENCES usertable(group_id) ON UPDATE CASCADE ON DELETE CASCADE );
         INSERT INTO interactions (login, inventory, coins, grp_id) VALUES (0, 0, 0, 1);
         `;
 // Execute SQL commands that we just wrote above.
