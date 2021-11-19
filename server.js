@@ -8,9 +8,15 @@ var db = require("./database.js")
 // requiring md5 
 var md5 = require("md5")
 
+// requiring CORS
+const cors = require("cors")
+
 // make express use its own body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Make Express use CORS
+app.use(cors());
 
 // server port 
 var HTTP_PORT = 5000
@@ -32,7 +38,8 @@ app.get("/app/users", (req, res) => {
 });
 
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-app.post("/app/new/", (req, res) => {
+app.post("/app/new/user", (req, res) => {
+	console.log(req.body);
     var errors = []
     if (!req.body.pass) {
         errors.push("password not specified!");
