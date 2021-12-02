@@ -13,15 +13,15 @@ For our final project, we decided on doing a simple (but fun!) farming increment
 ## Team Roles!
 
 ### MGMT
-1. Review manager:
-2. Plan manager:
-3. Documentation manager:
+1. Review manager: 
+2. Plan manager: Ellie Evans/Jade Henderson
+3. Documentation manager: Alice Yu 
 
 ### The Leads
-1. Front end:  
-2. Back end: Claire Liang
+1. Front end: Claire Liang 
+2. Back end: Gerson Aguilera
 3. Database: Jade Henderson
-4. Design: 
+4. Design: Ellie Evans
 
 ## Documentation! 
 
