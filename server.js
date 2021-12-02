@@ -5,9 +5,6 @@ var app = express()
 // requiring database SCRIPT file
 var db = require("./database.js")
 
-// requiring md5 
-var md5 = require("md5")
-
 // requiring CORS
 const cors = require("cors")
 
@@ -51,8 +48,8 @@ app.post("/app/new/user", (req, res) => {
         res.status(400).json({"error" : errors.join(",")});
         return;
     }
-	const stmt = db.prepare("INSERT INTO usertable (user, pass, email) VALUES (?, ?, ?)");
-	const info = stmt.run(req.body.user, md5(req.body.pass), req.body.email);
+	const stmt = db.prepare("INSERT INTO usertable (user, pass, login, inventory, coins, email) VALUES (?, ?, 0, 0, 1, ?)");
+	const info = stmt.run(req.body.user, req.body.pass, req.body.email);
 	res.status(201).json({"message" : info.changes+ " record created: ID " +info.lastInsertRowid + " (201)"});
 });
 
@@ -64,8 +61,8 @@ app.get("/app/user/:id", (req, res) => {
 
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 app.patch("/app/update/user/:id", (req, res) => {
-	const stmt = db.prepare("UPDATE usertable SET user = COALESCE(?,user), pass = COALESCE(?,pass), email = COALESCE(?,email) WHERE group_id = ?");
-	const info = stmt.run(req.body.user, md5(req.body.pass), req.body.email, req.params.id);
+	const stmt = db.prepare("UPDATE usertable SET user = COALESCE(?,user), pass = COALESCE(?,pass), login = COALESCE(?,login), inventory = COALESCE(?,inventory), coins = COALESCE(?,coins), email = COALESCE(?,email) WHERE group_id = ?");
+	const info = stmt.run(req.body.user, req.body.pass, req.body.login, req.body.inventory, req.body.coins, req.body.email, req.params.id);
 	res.status(200).json({"message" : info.changes+ " record updated: ID " +req.params.id + " (200)"});
 });
 
@@ -76,44 +73,33 @@ app.delete("/app/delete/user/:id", (req, res) => {
 	res.status(200).json({"message" : info.changes+ " record deleted: ID " +req.params.id + " (200)"});
 });
 
-// CREATE new interaction at endpoint /app/interaction/
-app.post("/app/interaction", (req, res) => {
-	const stmt = db.prepare("INSERT INTO interactions (login, inventory, coins, grp_id) VALUES (?, ?, ?, ?)");
-	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins, req.body.grp_id);
-	res.status(201).json({"message" : info.changes+ " record created: ID " +info.lastInsertRowid + " (201)"});
+// authenticate login information (user and pass)
+app.post("/app/login/user", (req, res) => {	
+	const stmt = db.prepare("SELECT * FROM usertable WHERE user = ? AND pass = ?").get(req.body.user, req.body.pass);
+	if (req.body.pass.length == 0) {
+		res.status(404);
+	} else {
+		res.status(200).json(stmt);
+	}
 });
 
-// READ a list of all interactions (HTTP method GET) at endpoint /app/interactions/
-app.get("/app/interactions", (req, res) => {	
-	const stmt = db.prepare("SELECT * FROM interactions").all();
-	res.status(201).json(stmt);
-});
-
-// READ a single interaction (HTTP method GET) at endpoint /app/interaction/:id
-app.get("/app/interaction/:id", (req, res) => {
-	const stmt = db.prepare("SELECT * FROM interactions WHERE id = ?").get(req.params.id);
-	res.status(201).json(stmt);
-});
-
-// UPDATE interaction at endpoint /app/update/interaction/:id
-app.patch("/app/update/interaction/:id", (req, res) => {
-	const stmt = db.prepare("UPDATE interactions SET login = COALESCE(?,login), inventory = COALESCE(?,inventory), coins = COALESCE(?,coins), grp_id = COALESCE(?,grp_id) WHERE id = ?");
-	const info = stmt.run(req.body.login, req.body.inventory, req.body.coins, req.body.grp_id, req.params.id);
-	res.status(200).json({"message" : info.changes+ " record updated: ID " +req.params.id + " (200)"});
-});
-
-// DELETE a single interaction (HTTP method DELETE) at endpoint /app/delete/interaction/:id
-app.delete("/app/delete/interaction/:id", (req, res) => {
-	const stmt = db.prepare("DELETE FROM interactions WHERE id = ?");
-	const info = stmt.run(req.params.id);
-	res.status(200).json({"message" : info.changes+ " record deleted: ID " +req.params.id + " (200)"});
+// connect to database again
+app.post("/app/connect/user", (req, res) => {	
+	const stmt = db.prepare("SELECT * FROM usertable WHERE user = ?").get(req.body.user);
+	if (req.body.user.length == 0) {
+		res.status(404);
+	} else {
+		res.status(200).json(stmt);
+	}
 });
 
 // Default response for any other request not listed
-app.use(function(req, res){
+app.use(function(req, res) {
 	res.json({"message":"Endpoint not found. (404)"});
     res.status(404);
 });
+
+
 
 // tell STDOUT that server is stopped
 process.on('SIGTERM', () => {
