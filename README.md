@@ -7,22 +7,21 @@ For our final project, we decided on doing a simple (but fun!) farming increment
 
 3. Create a `/docs/` directory for more elaborate documentation of your API, planning notes, etc.
 8. Then put your entire development workflow in this repository.
-9. Use **Pull requests** to propose changes and incorporate them into your code from various team members. 
 10. Use **Issues** to identify and track bugs and also to communicate about various aspects of the project.
 
 ## Team Roles!
 
 ### MGMT
-1. Review manager: 
-2. Plan manager: Ellie Evans/Jade Henderson
-3. Documentation manager: Alice Yu 
+1. Plan manager(s): Ellie Evans/Jade Henderson
+2. Documentation manager: Alice Yu 
 
 ### The Leads
 1. Front end: Claire Liang 
-2. Back end: Gerson Aguilera
+2. Back end: Claire Liang/Gerson Aguilera
 3. Database: Jade Henderson
 4. Design: Ellie Evans
 
-## Documentation! 
+## Documentation and WorkFlow! 
 
 For a technical look into just how the API works, check out our [documentation!](docs/documentation.md)
+To check out our team workflow and planning please visit [workflow!](docs/workflow.md)
