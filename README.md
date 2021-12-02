@@ -23,5 +23,5 @@ For our final project, we decided on doing a simple (but fun!) farming increment
 
 ## Documentation and WorkFlow! 
 
-For a technical look into just how the API works, check out our [documentation!](docs/documentation.md)
+For a technical look into just how the API works, check out our [documentation!](docs/documentation.md)\
 To check out our team workflow and planning please visit [workflow!](docs/workflow.md)
