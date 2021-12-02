@@ -17,12 +17,12 @@ Other steps that you will need to take after you have cloned this repository:
 
 ## Team Roles!
 
-# MGMT
+### MGMT
 1. Review manager - someone to review pull requests and merge or reject them and manage the related discussions
 2. Plan manager - someone to keep an eye on the overall plan and keep the project tab/to-do list up to date
 3. Documentation manager - someone to keep the documentation in order and identify what is missing and needs to be documented
 
-# The Leads
+### The Leads
 1. Front end:  
 2. Back end: Claire Liang
 3. Database: Jade Henderson
@@ -30,4 +30,4 @@ Other steps that you will need to take after you have cloned this repository:
 
 ## Documentation! 
 
-For a technical look into just how the API works, check out [documentation!]()
+For a technical look into just how the API works, check out our [documentation!](docs/documentation.md)
