@@ -1,11 +1,29 @@
-
 let inventory = 0;
 let coins = 0;
+let currUser = null;
 window.addEventListener( "load", function () {
+    if (localStorage.getItem('logged') === 'yes') {
+        hideHomePage();
+        hideStartButton();
+        showGamePage();
+        document.getElementById('loginuser').setAttribute('value', localStorage.getItem('user'));
+        document.getElementById('loginpass').setAttribute('value', localStorage.getItem('pass'));
 
-    hideStartButton();
-    hideGamePage();
-    let currUser = null;
+        const loginForm = document.getElementById( "login" );
+        const sendRequest = new XMLHttpRequest();
+        const loginInfo = new URLSearchParams(new FormData( loginForm ));
+
+        sendRequest.onreadystatechange = function() {
+            currUser = JSON.parse(sendRequest.response);
+        }
+        sendRequest.open("POST", "http://localhost:5000/app/login/user");
+        sendRequest.send( loginInfo );
+        
+    } else {
+        hideStartButton();
+        hideGamePage();
+        showHomePage();
+    }
 
     function hideStartButton() {
         document.getElementById("start").style.display="None";
@@ -134,6 +152,9 @@ window.addEventListener( "load", function () {
 
         sendRequest.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                localStorage.setItem('logged','yes');
+                localStorage.setItem('user',document.getElementById('loginuser').value);
+                localStorage.setItem('pass',document.getElementById('loginpass').value);
                 currUser = JSON.parse(sendRequest.response);
                 showStartButton();
                 alert("Login successful! " + currUser.group_id);
@@ -147,33 +168,28 @@ window.addEventListener( "load", function () {
     };
 
     const signupForm = document.getElementById( "signup" );
-
     signupForm.addEventListener( "submit", function ( event ) {
         event.preventDefault();
         sendData();
     });
 
     const loginForm = document.getElementById( "login" );
-
     loginForm.addEventListener( "submit", function ( event ) {
         event.preventDefault();
         getData();
     });
 
     const harvestButton = document.getElementById( "harvest" );
-
     harvestButton.addEventListener( "click", function ( event ) {
         handleHarvest();
     });
 
     const sellButton = document.getElementById( "sell" );
-
     sellButton.addEventListener( "click", function ( event ) {
         handleSell();
     });
-    
-    const startButton = document.getElementById( "start" );
 
+    const startButton = document.getElementById( "start" );
     startButton.addEventListener( "click", function(event) {
         event.preventDefault();
         alert("starting game");
@@ -190,6 +206,18 @@ window.addEventListener( "load", function () {
         Inventory: ${currUser.inventory}, 
         Coins: ${currUser.coins}`
 
+    });
+
+    const exitButton = document.getElementById("exit");
+    exitButton.addEventListener("click" , function(event) {
+        event.preventDefault();
+        currUser = null;
+        localStorage.setItem('logged','no');
+        hideStartButton();
+        hideGamePage();
+        showHomePage();
+        document.getElementById('loginuser').setAttribute('value', '');
+        document.getElementById('loginpass').setAttribute('value', '');
     });
 });
 
