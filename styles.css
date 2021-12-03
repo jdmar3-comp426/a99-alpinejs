@@ -1,0 +1,41 @@
+html {
+    background-color: #ffffcc;
+}
+
+#title {
+    margin: auto;
+    width: 72%;
+    padding: 0px 0px 50px 0px;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Papyrus;
+}
+
+#signingup {
+    padding: 0px 0px 20px 0px;
+}
+
+#loggingin {
+    padding: 0px 0px 20px 0px;
+}
+
+#home {
+    margin: auto;
+    width: 55%;
+    padding: 125px 0px;
+    font-family: Arial;
+}
+
+#start {
+    margin: auto;
+    width: 40%;
+    padding: 10px 0px;
+}
+
+#tractor {
+    height: 300px;
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+    padding: 60px 0px 0px 0px;
+}
