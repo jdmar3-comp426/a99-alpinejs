@@ -5,7 +5,7 @@ For our final project, we decided on doing a simple (but fun!) farming increment
 
 ## Walkthrough!
 
-Please check out our short playthrough to get familiar with how the game works! 
+Please check out our short playthrough to get familiar with how the game works!\
 Link to Playthrough: https://youtu.be/L5c2RYW13D0
 
 ## Installation Requirements/Instructions
