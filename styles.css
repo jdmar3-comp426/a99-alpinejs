@@ -56,6 +56,15 @@ html {
     margin: 0px 80px 0px 80px;
 }
 
+#displayinfo {
+    font-family: Arial;
+    color: gold;
+    font-size: 30px;
+    padding: 0px 10px 10px 10px;
+    margin: 100px 80px 0px 400px;
+}
+
+
 #buttons {
     font-family: Arial;
     font-size: 20px;
