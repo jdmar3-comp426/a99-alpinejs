@@ -39,3 +39,60 @@ html {
     margin: 0 auto;
     padding: 60px 0px 0px 0px;
 }
+
+.title {
+    font-size: 50px;
+    font-family: Arial;
+    margin: 0 auto;
+    width: 88%;
+    padding: 60px 0px 60px 0px;
+}
+
+#steps {
+    font-family: Arial;
+    font-size: 30px;
+    padding: 0px 10px 10px 10px;
+    border: 2px solid black;
+    margin: 0px 80px 0px 80px;
+}
+
+#buttons {
+    font-family: Arial;
+    font-size: 20px;
+    margin: 0 auto;
+    width: 52%;
+    padding: 50px 10px 10px 10px;
+
+}
+
+#harvest, #sell, .generalbutton, #exit, #infobox {
+    font-size: 30px;
+    font-family: Arial;
+    margin: 0px 10px;
+    padding: 10px 10px;
+}
+
+#harvest {
+    background-color: coral;
+    cursor: pointer;
+}
+
+#sell {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.generalbutton {
+    background-color: gold;
+    cursor: pointer;
+}
+
+#exit {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+#harvest:hover, #sell:hover, .generalbutton:hover, #exit:hover {
+    background-color: white;
+    color: black;
+  }

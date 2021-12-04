@@ -203,7 +203,7 @@ window.addEventListener( "load", function () {
     infoBox.addEventListener("click", function(event){
         event.preventDefault();
         document.getElementById("infobox").innerHTML = `Username: ${currUser.user}, 
-        Inventory: ${currUser.inventory}, 
+        Potatoes: ${currUser.inventory}, 
         Coins: ${currUser.coins}`
 
     });
