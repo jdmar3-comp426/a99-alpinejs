@@ -7,18 +7,35 @@ For our final project, we decided on doing a simple (but fun!) farming increment
 
 Please check out our short playthrough to get familiar with how the game works! 
 
+## Installation Requirements/instructions
+1. Clone the ```a99-alpinejs``` respository 
+2. To start the game, run ```npx browser-sync start -sw```
+
+## Dependencies
+    "better-sqlite3": "^7.4.5",
+    "browser-sync": "^2.27.7",
+    "bulma": "^0.9.3",
+    "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "md5": "^2.3.0"
+
 
 ## Team Roles!
 
-### MGMT
-1. Plan manager(s): Ellie Evans/Jade Henderson
-2. Documentation manager: Alice Yu 
+### Mangagement
+Role|Name(s)
+---|---
+Planning|Ellie Evans/Jade Henderson
+Documentation|Alice Yu 
 
-### The Leads
-1. Front end: Claire Liang 
-2. Back end: Claire Liang/Gerson Aguilera
-3. Database: Jade Henderson
-4. Design: Ellie Evans/Gerson Aguilera
+### Technical 
+Role|Name(s)
+---|---
+Front end|Claire Liang 
+Back end|Claire Liang/Gerson Aguilera
+Database|Jade Henderson
+Design|Ellie Evans/Gerson Aguilera
 
 ## Documentation and WorkFlow! 
 
