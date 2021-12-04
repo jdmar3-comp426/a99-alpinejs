@@ -71,8 +71,10 @@ window.addEventListener( "load", function () {
         sendRequest.send(searchParams);
     };
 
+
+
     function handleHarvest() {
-        alert("handleHarvest called");
+        alert("handleHarvest Called");
 
         const sendRequest = new XMLHttpRequest();
         let paramsObj = {
@@ -85,13 +87,13 @@ window.addEventListener( "load", function () {
         let searchParams = new URLSearchParams(paramsObj);
 
         sendRequest.addEventListener( "load", function ( event ) {
-            alert( 'harvested!');
+            alert( 'Harvested!');
             inventory = currUser.inventory;
             coins = currUser.coins;
         });
 
         sendRequest.addEventListener( "error", function ( event ) {
-            alert('harvest unsuccessful.');
+            alert('Harvest Unsuccessful.');
         });
 
         sendRequest.open("PATCH", "http://localhost:5000/app/update/user/" + currUser.group_id);
@@ -99,7 +101,7 @@ window.addEventListener( "load", function () {
     }
 
     function handleSell() {
-        alert("handleSell called");
+        alert("handleSell Called");
 
         const sendRequest = new XMLHttpRequest();
         let paramsObj = {
@@ -113,14 +115,14 @@ window.addEventListener( "load", function () {
 
         sendRequest.addEventListener( "load", function ( event ) {
             event.preventDefault();
-            alert( 'sold!');
+            alert( 'Sold!');
             inventory = currUser.inventory;
             coins = currUser.coins;
         });
 
         sendRequest.addEventListener( "error", function ( event ) {
             event.preventDefault();
-            alert('sale unsuccessful.');
+            alert('Sale Unsuccessful.');
         });
 
         sendRequest.open("PATCH", "http://localhost:5000/app/update/user/" + currUser.group_id);
@@ -133,11 +135,11 @@ window.addEventListener( "load", function () {
         const signupInfo = new URLSearchParams(new FormData( signupForm ));
 
         sendRequest.addEventListener( "load", function ( event ) {
-            alert( 'Your account was created!');
+            alert( 'Your Account Was Created!');
         });
 
         sendRequest.addEventListener( "error", function ( event ) {
-            alert('Submission unsuccessful! Please try again.');
+            alert('Submission Unsuccessful! Please Try Again.');
         });
 
         sendRequest.open( "POST", "http://localhost:5000/app/new/user" );
@@ -157,15 +159,42 @@ window.addEventListener( "load", function () {
                 localStorage.setItem('pass',document.getElementById('loginpass').value);
                 currUser = JSON.parse(sendRequest.response);
                 showStartButton();
-                alert("Login successful! " + currUser.group_id);
+                alert("Login Successful!");
             } else if ( this.status != 200 ) {
-                alert("Attempting log in...");
+                alert("Attempting Log In...");
             }
         }
 
         sendRequest.open("POST", "http://localhost:5000/app/login/user");
         sendRequest.send( loginInfo );
     };
+
+    function deleteAccount() {
+        alert("deleteAccount Called");
+
+        const sendRequest = new XMLHttpRequest();
+        let paramsObj = {
+            user: currUser.user,
+            coins: currUser.coins,
+            pass: currUser.pass,
+            inventory: currUser.inventory,
+            id: currUser.group_id, 
+            login: currUser.login};
+        let searchParams = new URLSearchParams(paramsObj);
+
+        sendRequest.addEventListener("load", function(event) {
+            event.preventDefault();
+            alert('Account Deleted!');
+        });
+
+        sendRequest.addEventListener( "error", function(event) {
+            event.preventDefault();
+            alert('Delete Unsuccessful.');
+        });
+
+        sendRequest.open("DELETE", "http://localhost:5000/app/delete/user/" + currUser.group_id);
+        sendRequest.send(searchParams);
+    }
 
     const signupForm = document.getElementById( "signup" );
     signupForm.addEventListener( "submit", function ( event ) {
@@ -192,8 +221,7 @@ window.addEventListener( "load", function () {
     const startButton = document.getElementById( "start" );
     startButton.addEventListener( "click", function(event) {
         event.preventDefault();
-        alert("starting game");
-        
+        alert("Starting Game");
         hideHomePage();
         showGamePage();
     });
@@ -218,6 +246,13 @@ window.addEventListener( "load", function () {
         showHomePage();
         document.getElementById('loginuser').setAttribute('value', '');
         document.getElementById('loginpass').setAttribute('value', '');
+    });
+
+    const deleteButton = document.getElementById("delete");
+    deleteButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        localStorage.setItem('logged','no');
+        deleteAccount();
     });
 });
 

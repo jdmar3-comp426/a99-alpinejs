@@ -65,7 +65,7 @@ html {
 
 }
 
-#harvest, #sell, .generalbutton, #exit, #infobox {
+#harvest, #sell, .generalbutton, #exit, #infobox, #delete{
     font-size: 30px;
     font-family: Arial;
     margin: 0px 10px;
@@ -92,7 +92,13 @@ html {
     cursor: pointer;
 }
 
-#harvest:hover, #sell:hover, .generalbutton:hover, #exit:hover {
+#delete {
+    background-color: red;
+    cursor: pointer;
+    margin: 110px 0px 50px 30px;
+}
+
+#harvest:hover, #sell:hover, .generalbutton:hover, #exit:hover, #delete:hover{
     background-color: white;
     color: black;
   }
