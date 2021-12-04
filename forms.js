@@ -1,6 +1,6 @@
 let inventory = 0;
 let coins = 0;
-let currUser = "test";
+let currUser = null;
 window.addEventListener( "load", function () {
     if (localStorage.getItem('logged') === 'yes') {
         hideHomePage();
@@ -13,9 +13,8 @@ window.addEventListener( "load", function () {
         const sendRequest = new XMLHttpRequest();
         const loginInfo = new URLSearchParams(new FormData( loginForm ));
 
-
         sendRequest.onreadystatechange = function() {
-            // currUser = JSON.parse(sendRequest.response);
+            currUser = JSON.parse(sendRequest.response);
         }
         sendRequest.open("POST", "http://localhost:5000/app/login/user");
         sendRequest.send( loginInfo );
@@ -45,12 +44,6 @@ window.addEventListener( "load", function () {
     }
     function showGamePage() {
         document.getElementById("game").style.display="block";
-    }
-    function showInfoBox() {
-        document.getElementById("stats").style.display="block";
-    }
-    function hideInfoBox() {
-
     }
 
     function updateLogin() {
@@ -206,7 +199,6 @@ window.addEventListener( "load", function () {
     const signupForm = document.getElementById( "signup" );
     signupForm.addEventListener( "submit", function ( event ) {
         event.preventDefault();
-        showGamePage();
         sendData();
     });
 
@@ -234,10 +226,11 @@ window.addEventListener( "load", function () {
         showGamePage();
     });
 
+
     const infoBox = document.getElementById("info");
     infoBox.addEventListener("click", function(event){
         event.preventDefault();
-        document.getElementById("displayinfo").innerHTML = `Username: ${currUser.user}, 
+        document.getElementById("infobox").innerHTML = `Username: ${currUser.user}, 
         Potatoes: ${currUser.inventory}, 
         Coins: ${currUser.coins}`
 
@@ -262,4 +255,3 @@ window.addEventListener( "load", function () {
         deleteAccount();
     });
 });
-

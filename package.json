@@ -9,7 +9,7 @@
   "scripts": {
     "client": "npx browser-sync start -sw",
     "server": "node server.js",
-    "start": "concurrently --kill-others 'npm run client' 'npm run server'"
+    "start": "concurrently --kill-others \"npm run client\" \"npm run server\""
   },
   "proxy": "http://localhost:8080",
   "repository": {
