@@ -7,8 +7,8 @@ For our final project, we decided on doing a simple (but fun!) farming increment
 
 Please check out our short playthrough to get familiar with how the game works! 
 
-## Installation Requirements/instructions
-1. Clone the ```a99-alpinejs``` respository 
+## Installation Requirements/Instructions
+1. Clone the ```a99-alpinejs``` repository 
 2. To start the game, run ```npx browser-sync start -sw```
 
 ## Dependencies
@@ -23,7 +23,7 @@ Please check out our short playthrough to get familiar with how the game works!
 
 ## Team Roles!
 
-### Mangagement
+### Management
 Role|Name(s)
 ---|---
 Planning|Ellie Evans/Jade Henderson
@@ -37,7 +37,7 @@ Back end|Claire Liang/Gerson Aguilera
 Database|Jade Henderson
 Design|Ellie Evans/Gerson Aguilera
 
-## Documentation and WorkFlow! 
+## Documentation and Workflow! 
 
 For a technical look into just how the API works, check out our [documentation!](docs/documentation.md)\
 To check out our team workflow and planning please visit [workflow!](docs/workflow.md)
