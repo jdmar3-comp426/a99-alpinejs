@@ -10,7 +10,7 @@ Link to Playthrough: https://youtu.be/L5c2RYW13D0
 
 ## Installation Requirements/Instructions
 1. Clone the ```a99-alpinejs``` repository 
-2. To start the game, run ```npm run start```
+2. To start the game, run ```npx browser-sync start -sw```
 
 ## Dependencies
     "better-sqlite3": "^7.4.5",
