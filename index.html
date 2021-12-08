@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to Potato Town!</title>
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+        <link rel="stylesheet" href="styles.css">
+        <script src="forms.js"></script>
+    </head>
+    <body>
+        <div id="home">
+            <div id="signingup">
+                <h1 id="title">Welcome to Harvest Town</h1>
+                <p>
+                    New User? Signup
+                    <form id="signup">
+                        <label for="user">Username:</label>
+                        <input id="user" name="user" value="">
+                        <label for="email">Email address:</label>
+                        <input id="email" name="email" value="">
+                        <label for="pass">Password:</label>
+                        <input type="password" id="pass" name="pass" value="">
+                        <input type="submit" value="Submit">
+                    </form>
+                </p>
+            </div>
+            <div id="loggingin">
+                <p>
+                    Returning User? Login
+                    <form id="login">
+                        <label for="user">Username:</label>
+                        <input id="loginuser" name="user" value="">
+                        <label for="pass">Password:</label>
+                        <input type="password" id="loginpass" name="pass" value="">
+                        <input type="submit" value="Login">
+                    </form>
+                </p>
+            </div>
+    
+            <button id="start">Play Game!</button>
+            <img src="./tractor.png" id="tractor" alt="A cartoon tractor.">
+
+        </div>
+
+        <div id="game">
+            <h1 class="title">Help the Farmers Harvest Potatoes Before it's Too Late!</h1>
+            <div id="steps">
+                <p>Step One: Harvest your potatoes from the farm (head's up: each harvest costs 1 coin)</p>
+                <p>Step Two: Sell the potatoes at the farmer's market</p>
+                <p>Step Three: Maximize the farmer's profits!</p>
+            </div>
+            <div id="buttons">
+                <button id="harvest">Harvest</button>
+                <button id="sell">Sell</button>
+                <button class="generalbutton" type="submit" id="info">
+                    Check Potatoes and Coins!
+                </button> 
+                <button id="exit">Exit</button>
+                <p id="infobox"></p>
+            </div>
+            <button id="delete">Delete Account</button>
+        </div>
+    </body>
+</html>

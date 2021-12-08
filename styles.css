@@ -1,0 +1,104 @@
+html {
+    background-color: #ffffcc;
+}
+
+#title {
+    margin: auto;
+    width: 72%;
+    padding: 0px 0px 50px 0px;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Papyrus;
+}
+
+#signingup {
+    padding: 0px 0px 20px 0px;
+}
+
+#loggingin {
+    padding: 0px 0px 20px 0px;
+}
+
+#home {
+    margin: auto;
+    width: 55%;
+    padding: 125px 0px;
+    font-family: Arial;
+}
+
+#start {
+    margin: auto;
+    width: 40%;
+    padding: 10px 0px;
+}
+
+#tractor {
+    height: 300px;
+    width: 350px;
+    display: block;
+    margin: 0 auto;
+    padding: 60px 0px 0px 0px;
+}
+
+.title {
+    font-size: 50px;
+    font-family: Arial;
+    margin: 0 auto;
+    width: 88%;
+    padding: 60px 0px 60px 0px;
+}
+
+#steps {
+    font-family: Arial;
+    font-size: 30px;
+    padding: 0px 10px 10px 10px;
+    border: 2px solid black;
+    margin: 0px 80px 0px 80px;
+}
+
+#buttons {
+    font-family: Arial;
+    font-size: 20px;
+    margin: 0 auto;
+    width: 52%;
+    padding: 50px 10px 10px 10px;
+
+}
+
+#harvest, #sell, .generalbutton, #exit, #infobox, #delete{
+    font-size: 30px;
+    font-family: Arial;
+    margin: 0px 10px;
+    padding: 10px 10px;
+}
+
+#harvest {
+    background-color: coral;
+    cursor: pointer;
+}
+
+#sell {
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
+.generalbutton {
+    background-color: gold;
+    cursor: pointer;
+}
+
+#exit {
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+#delete {
+    background-color: red;
+    cursor: pointer;
+    margin: 110px 0px 50px 30px;
+}
+
+#harvest:hover, #sell:hover, .generalbutton:hover, #exit:hover, #delete:hover{
+    background-color: white;
+    color: black;
+  }
